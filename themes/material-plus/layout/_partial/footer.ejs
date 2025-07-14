@@ -1,0 +1,48 @@
+<footer id="footer" class="clearfix">
+    <div class="footer-copyright">
+      <span>
+        <% if (config.copyrightIcon === true) { %>&copy;<%}%>
+        <img class="nofancybox" src="/img/xinxing.gif" style="border-radius: 5px;" width="15px" height="15px">&nbsp;<%= config.copyright %>  &nbsp;<a href="https://beian.miit.gov.cn" target="_Blank"><%= config.beian %>
+      </span>
+    </div>
+
+<% if (config.runtime.enable === true) { %>
+<div>
+ <i class="fas fa-sync fa-fw" aria-hidden="true"></i>&nbsp;
+<span id="runtime_span"></span>
+</div>
+<script type="text/javascript">
+function show_runtime(){
+  window.setTimeout("show_runtime()",1000);
+  X=new Date("<%=config.runtime.month%>/<%=config.runtime.day%>/<%=config.runtime.year%> <%=config.runtime.hour%>:<%=config.runtime.minute%>:<%=config.runtime.second%>");
+  Y=new Date();T=(Y.getTime()-X.getTime());M=24*60*60*1000;
+  a=T/M;A=Math.floor(a);
+  b=(a-A)*24;B=Math.floor(b);
+  c=(b-B)*60;C=Math.floor((b-B)*60);
+  D=Math.floor((c-C)*60);
+  runtime_span.innerHTML="<%=config.runtime.span%>&nbsp;"+A+"天"+B+"小时"+C+"分"+D+"秒"}show_runtime();
+</script>
+<% } %>
+
+    <% if (config.bottomlink) { %>
+        <div style="margin-top: 10px;">
+          <b>
+          <a href="/links/index.html" target="_blank">友情链接&nbsp;|</a>
+          <a href="/about2/index.html" target="_blank">关于博主&nbsp;|</a>
+          <a href="/about/index.html" target="_blank">关于本站&nbsp;|</a>
+          <a href="<%=config.baidutongjiurl%>" target="_blank">百度统计&nbsp;</a>
+          </b>
+        </div>
+    <%}%>
+<% if (config.footerpic) { %>
+    <img class="footer-img" src="/img/footer-jiaqunQR.png">
+<% } %>
+    <div class="footer-hr"></div>
+
+</footer>
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+<% if (page.mathjax == true){ %>
+    <%- partial('mathjax') %>
+<% } %>

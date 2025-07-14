@@ -1,0 +1,38 @@
+ <script>
+ var url = window.location.href;
+ if(url.indexOf("localhost") < 0){if (url.indexOf("https") < 0) {url = url.replace("http:", "https:");window.location.replace(url);}}
+</script>
+<% if (page.prev == 0) { %>
+<% if (config.carousel) { %>
+<div id="carousel-yc" class="swiper-container">
+    <div class="swiper-wrapper">
+	<% (config.carousel||[]).forEach(function(value){ %>
+	<% if (value.img && value.url) { %>
+	<div class="swiper-slide"><a href="<%= value.url %>"><img src="<%= value.img %>"></a></div>
+	<%}%>
+<%})%>	
+</div>
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+</div>	
+<%}%>
+
+<% if (config.topnotice.enable === true) { %>
+
+	<div id="notice-bar-off" class="notice-bar text-container">
+	<!-- <img class="notice-bar-img" src="<%= config.topnotice.img %>"/> -->
+	&nbsp;<i class="fa fa-volume-down" aria-hidden="true"></i>&nbsp;
+
+		<a href="<%= config.topnotice.link %>">
+			<%= config.topnotice.content %>
+		</a>
+	</div>
+
+
+
+<% } %>
+<%}%>
+<%- partial('_partial/archive') %>
+
+
